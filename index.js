@@ -7,6 +7,7 @@ const morgan = require('morgan')
  
 const userRoutes = require("./routes/user")
 const authRoutes = require("./routes/auth")
+const postRoutes = require("./routes/posts")
 dotenv.config() 
 mongoose.connect(process.env.MONGO_URL,()=>{
     console.log("connected to mongodb")
@@ -18,6 +19,7 @@ app.use(helmet())
 app.use(morgan("common"))
 app.use('/api/user' , userRoutes)
 app.use('/api/auth' , authRoutes)
+app.use('/api/post', postRoutes)
 app.get("/",(req,res)=> {
     res.send("welcome to home page")
     console.log("hai")
